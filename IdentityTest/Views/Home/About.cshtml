@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!-- page header -->
+<div class="column-body">
+    <div class="container-about">
+        <div class="column" id="column1">
+            <img src="/imgs/RN.png" alt="Image for Column 1">
+        </div>
+        <div class="column" id="column2">
+            <div class="text">
+                <p class="name">Rico Nieto</p>
+                <p class="role">3rd Year IT Student</p>
+                <p class="description">
+                    Trying my best, in Web Development, College and Life <br />
+                </p>
+            </div>
+        </div>
+        <button class="learn-more" id="toggleButton">
+            <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Learn More</span>
+        </button>
+    </div>
+
+
+
+
+
+    <script>
+        const container = document.querySelector(".container");
+        const column1 = document.getElementById("column1");
+        const column2 = document.getElementById("column2");
+        const toggleButton = document.getElementById("toggleButton");
+
+        let isColumn1Visible = true;
+        let column1Content = column1.innerHTML;
+        let column2Content = column2.innerHTML;
+        let isAnimating = false;
+
+        toggleButton.addEventListener("click", () => {
+
+            if (!isAnimating) {
+                isAnimating = true;
+
+                if (isColumn1Visible) {
+                    column1.style.transform = "translateX(100%)";
+                    column2.style.transform = "translateX(-100%)";
+                    column2.style.opacity = 0;
+                    column1.style.opacity = 1;
+
+                } else {
+                    column1.style.transform = "translateX(0)";
+                    column2.style.transform = "translateX(0)";
+                    column1.style.opacity = 1; // Fade in Column 1
+                    column2.style.opacity = 0; // Fade out Column 2
+
+                }
+
+                setTimeout(() => {
+                    // After the transition is complete, change the content of the columns
+                    if (isColumn1Visible) {
+                        column1.innerHTML = '<img src="/imgs/RN.png" alt="Image for Column 1 during swap">';
+                        column2.innerHTML = '<p class="line1">Achievements</p><p class="line2"></p><p class="line3">REC101; Hosting Division | UST | 2021 <br> Silver Awardee | Grade 10-12 | 2019 - 2021 <br> Best Home-Based Experimental Research | 2021 <br> Academic Excellence Award | 2019 <br> Grade 11 Math Challenger Division 12th Placer (Team Category) | 2020 <br><br> <a href="https://www.facebook.com/rico.nieto.1/"><img src="/imgs/facebook.png" alt="Logo" class="small-logo" /></a><a href="https://www.instagram.com/riconietooo/"><img src="/imgs/instagram.png" alt="Logo" class="small-logo" /></a><a href="https://twitter.com/Reyko_2"><img src="/imgs/twitter.png" alt="Logo" class="small-logo" /></a> <br> </p>';
+                        column1.style.opacity = 1;
+                        column2.style.opacity = 0;
+                    } else {
+                        column1.innerHTML = column1Content;
+                        column2.innerHTML = column2Content;
+                        column1.style.opacity = 0;
+                        column2.style.opacity = 1;
+                    }
+
+                    column1.style.opacity = 1;
+                    column2.style.opacity = 1;
+
+                    isColumn1Visible = !isColumn1Visible;
+                    isAnimating = false;
+                }, 300);
+
+            }
+        });
+    </script>
+</div>
