@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IdentityTest.Models
 {
+
     public class RegisterViewModel
     {
         [Display(Name = "User Name")]
